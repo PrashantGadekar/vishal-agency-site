@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Prevent Pages Router conflicts (we use App Router only)
+/pages/
+/api/
+
+# Duplicate component directories
+/components/
+/styles/
