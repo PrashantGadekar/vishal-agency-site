@@ -40,10 +40,10 @@ const Header = () => {
           style={{ marginRight: '5rem' }}
         >
           <a href="#home" className="flex items-center space-x-2">
-            {/* <span className="text-2xl">🌊</span> */}
+            
             <div className="flex flex-col leading-tight">
-              <span className="text-white">Syncwave</span>
-              <span className="text-blue-400" style={{ justifyContent: 'center' }}>Media</span>
+              <span className="text-white">the</span>
+              <span className="text-blue-400" style={{ justifyContent: 'center' }}>ViSocial</span>
             </div>
           </a>
 
