@@ -132,9 +132,9 @@ const IntroducingUs = () => {
               INTRODUCING US
             </motion.h2>
             <motion.p variants={itemVariants} className="text-gray-400 max-w-3xl mt-4 mx-auto">
-              We help creators, founders, and podcasts produce and distribute tailored content
-              that improves visibility, builds trust among their audience, and positions
-              them as the industry leader in their niche.
+              We specialize in transforming everyday recordings into powerful, 
+              story driven videos that perfectly match your brand identity 
+              helping your content cut through the noise and make a lasting impact online.
             </motion.p>
           </div>
           

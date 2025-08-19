@@ -86,20 +86,19 @@ const Hero = () => {
           className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 leading-none text-center max-w-5xl mx-auto"
           style={{ marginBottom: '3rem' }}
         >
-          TAILORED CONTENT PRODUCTION AND{' '}
+          STRATEGIC CONTENT PRODUCTION AND{' '}
           <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
             DISTRIBUTION
           </span>{' '}
-          FOR FOUNDERS & PODCASTS
+          FOR FOUNDERS & CREATORS
         </motion.h1>
 
         <motion.p
           variants={itemVariants}
           className="text-lg md:text-base text-gray-400 mb-8 max-w-4xl mx-auto leading-relaxed text-center"
         >
-          Transform your expertise into a powerful online presence with strategic video 
-          content that improves visibility, builds trust among your audience, and positions 
-          you as the industry leader in your niche.
+          Turn your knowledge and expertise into a powerful digital presence with high impact video content that increases visibility, 
+          builds audience trust, and positions you as the go-to leader in your space.
         </motion.p>
 
         <motion.div
@@ -110,19 +109,31 @@ const Hero = () => {
             href="#contact"
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
-            className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all duration-300"
+            className=" bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all duration-300"
           >
             Book a call
           </motion.a>
+
+          {/* <motion.a
+            href="#contact"
+             initial={{ opacity: 0, y: 20 }}
+             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+             transition={{ duration: 0.6, delay: 0.5 }}
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className="btn-primary text-lg text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all duration-300"
+          >
+            Book a call
+          </motion.a> */}
           
-          <motion.a
+          {/* <motion.a
             href="#portfolio"
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
             className="border border-white/30 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300"
           >
             View our work
-          </motion.a>
+          </motion.a> */}
         </motion.div>
 
         {/* Scroll indicator */}

@@ -35,19 +35,19 @@ const Services = () => {
     {
       icon: <UploadIcon />,
       title: 'Submit Your Recordings',
-      description: 'All you need to do is record your content, share the files and we will take care of the rest.',
+      description: 'Just film your content, send it our way, and we will handle the rest.',
       features: ['Easy file upload', 'Multiple formats supported', 'Secure file handling', 'Quick processing'],
     },
     {
       icon: <EditIcon />,
-      title: 'Your Video, Perfected',
-      description: 'Our creative team will craft a unique style, thoughtfully aligned with your brand\'s theme and vision.',
+      title: 'Polished to Perfection',
+      description: 'Our creative team edits with precision, aligning every video to your unique style and brand voice.',
       features: ['Custom brand styling', 'Professional editing', 'Visual storytelling', 'Brand consistency'],
     },
     {
       icon: <ShareIcon />,
-      title: 'Maximize Your Reach',
-      description: 'Watch as we redistribute your content across platforms, stopping the scroll and leaving viewers in awe.',
+      title: 'Expand Your Reach',
+      description: 'Your content is repurposed and distributed across platforms to maximize attention and engagement.',
       features: ['Multi-platform distribution', 'Optimized for each platform', 'Engagement optimization', 'Performance tracking'],
     },
   ];
@@ -85,9 +85,9 @@ const Services = () => {
         >
           <p className="text-sm text-gray-400 uppercase tracking-wider mb-4">How it works</p>
           <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
-            We handle everything, from content creation to{' '}
+            We manage the entire journey from content creation to{' '}
             <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              platform adaptation
+              platform ready adaptation.
             </span>
           </h2>
         </motion.div>
@@ -164,7 +164,7 @@ const Services = () => {
             whileTap={{ scale: 0.98 }}
             className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all duration-300"
           >
-            Book a discovery call
+            Book a call
           </motion.a>
         </motion.div>
       </div>
