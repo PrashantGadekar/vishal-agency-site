@@ -9,6 +9,7 @@ import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import IntroducingUs from '../components/IntroducingUs';
 import Testimonials from '../components/Testimonials';
+import WhyWorkWithUs from '../components/WhyWorkWithUs';
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       {/* <Portfolio /> */}
       <Testimonials />
       <About />
+      <WhyWorkWithUs />
       <Contact />
       <Footer />
     </main>

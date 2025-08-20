@@ -114,17 +114,7 @@ const Hero = () => {
             Book a call
           </motion.a>
 
-          {/* <motion.a
-            href="#contact"
-             initial={{ opacity: 0, y: 20 }}
-             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-             transition={{ duration: 0.6, delay: 0.5 }}
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="btn-primary text-lg text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all duration-300"
-          >
-            Book a call
-          </motion.a> */}
+        
           
           {/* <motion.a
             href="#portfolio"

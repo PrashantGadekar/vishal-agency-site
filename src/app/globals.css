@@ -102,6 +102,10 @@ body {
   animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+.book-color-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
 /* Button styles */
 .btn-primary {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);

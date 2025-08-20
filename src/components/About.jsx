@@ -142,26 +142,26 @@ const About = () => {
   }, [isInView]);
 
   const values = [
-    {
-      icon: <TargetIcon />,
-      title: 'Innovation',
-      description: 'We constantly push boundaries to deliver cutting-edge solutions.',
-    },
-    {
-      icon: <HandshakeIcon />,
-      title: 'Collaboration',
-      description: 'We work closely with our clients to achieve their vision.',
-    },
-    {
-      icon: <BoltIcon />,
-      title: 'Excellence',
-      description: 'We strive for perfection in every project we undertake.',
-    },
-    {
-      icon: <RocketIcon />,
-      title: 'Growth',
-      description: 'We help businesses scale and reach their full potential.',
-    },
+    // {
+    //   icon: <TargetIcon />,
+    //   title: 'Innovation',
+    //   description: 'We constantly push boundaries to deliver cutting-edge solutions.',
+    // },
+    // {
+    //   icon: <HandshakeIcon />,
+    //   title: 'Collaboration',
+    //   description: 'We work closely with our clients to achieve their vision.',
+    // },
+    // {
+    //   icon: <BoltIcon />,
+    //   title: 'Excellence',
+    //   description: 'We strive for perfection in every project we undertake.',
+    // },
+    // {
+    //   icon: <RocketIcon />,
+    //   title: 'Growth',
+    //   description: 'We help businesses scale and reach their full potential.',
+    // },
   ];
 
   return (
@@ -192,6 +192,87 @@ const About = () => {
             </p>
 
             {/* Stats */}
+            {/* <div className="grid grid-cols-2 gap-8 mb-12">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="text-center"
+                >
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={isInView ? { scale: 1 } : { scale: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 + 0.2 }}
+                    className="text-3xl md:text-4xl font-bold gradient-text mb-2"
+                  >
+                    {stat.id === 'projects' ? `${counters.projects}+` : 
+                     stat.id === 'clients' ? `${counters.clients}+` : 
+                     stat.id === 'experience' ? `${counters.experience}+` : 
+                     stat.id === 'support' ? `${counters.support}/7` : stat.number}
+                  </motion.div>
+                  <p className="text-gray-400 text-sm uppercase tracking-wide">
+                    {stat.label}
+                  </p>
+                </motion.div>
+              ))}
+            </div> */}
+
+            {/* <motion.a
+              href="#portfolio"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="btn-primary text-lg px-8 py-4"
+            >
+              See Our Work
+            </motion.a> */}
+          </motion.div>
+
+          {/* Visual Side */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative"
+          >
+            {/* Main Image Placeholder */}
+            {/* <div className="relative glass-effect rounded-2xl overflow-hidden h-96 mb-8"> */}
+            <div style={{ marginTop: 'auto' }}>
+              {/* <div className="w-full h-full bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center">
+                <div className="w-16 h-16">
+                  <BuildingIcon />
+                </div>
+              </div> */}
+              
+              {/* Floating elements */}
+              {/* <motion.div
+                className="absolute top-4 right-4 w-16 h-16 glass-effect rounded-full flex items-center justify-center"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+              >
+                <div className="w-8 h-8">
+                  <BoltIcon />
+                </div>
+              </motion.div> */}
+              
+              
+              {/* <motion.div
+                className="absolute bottom-4 left-4 w-12 h-12 glass-effect rounded-full flex items-center justify-center"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <div className="w-6 h-6">
+                  <PaletteIcon />
+                </div>
+              </motion.div> */}
+
+
+              {/* Stats here added */}
+              {/* Stats */}
             <div className="grid grid-cols-2 gap-8 mb-12">
               {stats.map((stat, index) => (
                 <motion.div
@@ -218,59 +299,10 @@ const About = () => {
                 </motion.div>
               ))}
             </div>
-
-            <motion.a
-              href="#portfolio"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-primary text-lg px-8 py-4"
-            >
-              See Our Work
-            </motion.a>
-          </motion.div>
-
-          {/* Visual Side */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
-          >
-            {/* Main Image Placeholder */}
-            <div className="relative glass-effect rounded-2xl overflow-hidden h-96 mb-8">
-              <div className="w-full h-full bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center">
-                <div className="w-16 h-16">
-                  <BuildingIcon />
-                </div>
-              </div>
-              
-              {/* Floating elements */}
-              <motion.div
-                className="absolute top-4 right-4 w-16 h-16 glass-effect rounded-full flex items-center justify-center"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-              >
-                <div className="w-8 h-8">
-                  <BoltIcon />
-                </div>
-              </motion.div>
-              
-              <motion.div
-                className="absolute bottom-4 left-4 w-12 h-12 glass-effect rounded-full flex items-center justify-center"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <div className="w-6 h-6">
-                  <PaletteIcon />
-                </div>
-              </motion.div>
             </div>
 
             {/* Secondary Images */}
-            <div className="grid grid-cols-2 gap-4">
+            {/* <div className="grid grid-cols-2 gap-4">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
@@ -292,12 +324,12 @@ const About = () => {
                   <MobileIcon />
                 </div>
               </motion.div>
-            </div>
+            </div> */}
           </motion.div>
         </div>
 
         {/* Values Section */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -334,7 +366,7 @@ const About = () => {
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

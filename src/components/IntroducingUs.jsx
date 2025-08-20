@@ -16,7 +16,8 @@ const IntroducingUs = () => {
     {
       id: 1,
       title: 'Creative Process',
-      url: '/videos/creative-process.mp4', // Local video path in public folder
+      url: 'https://www.youtube.com/watch?v=/o89K4MLpK1c',
+      // url: '/videos/creative-process.mp4', // Local video path in public folder
       direction: 'left',
     },
     {
