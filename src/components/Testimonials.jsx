@@ -11,12 +11,13 @@ const Testimonials = () => {
   const controls = useAnimation();
   const [videoDurations, setVideoDurations] = useState([]);
   const [autoplayEnabled, setAutoplayEnabled] = useState(true);
+  const [userInteracted, setUserInteracted] = useState(false);
   
   // Testimonial data with video and quote information
   const testimonials = [
     {
       id: 1,
-      name: "Alex Johnson",
+      name: "",
       position: "CEO, TechInnovate",
       videoUrl: "/videos/video-01.mp4", // Make sure this file exists in public/videos/
       quote: "Working with this team transformed our digital presence. The results exceeded our expectations!",
@@ -24,7 +25,7 @@ const Testimonials = () => {
     },
     {
       id: 2,
-      name: "Sarah Williams",
+      name: "",
       position: "Marketing Director, BrandElevate",
       videoUrl: "/videos/video-02.mp4", // Make sure this file exists in public/videos/
       quote: "The content strategy they developed doubled our engagement rates within just two months.",
@@ -32,7 +33,7 @@ const Testimonials = () => {
     },
     {
       id: 3,
-      name: "Michael Chen",
+      name: "",
       position: "Founder, GrowthHub",
       videoUrl: "/videos/video-03.mp4", // Make sure this file exists in public/videos/
       quote: "Their creative approach to video production helped us stand out in a crowded market.",
@@ -40,7 +41,7 @@ const Testimonials = () => {
     },
     {
       id: 4,
-      name: "Olivia Rodriguez",
+      name: "",
       position: "Content Creator",
       videoUrl: "/videos/video-04.mp4", // Make sure this file exists in public/videos/
       quote: "The quality and consistency of their work has helped me build a loyal audience across platforms.",
@@ -78,6 +79,7 @@ const Testimonials = () => {
   }, [testimonials]);
 
   // Auto-scroll functionality that waits for videos to complete
+  // This serves as a fallback in case the onEnded event doesn't fire properly
   useEffect(() => {
     let timeout;
     
@@ -85,12 +87,16 @@ const Testimonials = () => {
       // Get current video duration, fallback to 8 seconds if not available
       const currentDuration = videoDurations[currentIndex] || 8000;
       
-      // Set timeout to advance to next slide after video finishes
+      // Add a small buffer to the duration to ensure onEnded has a chance to fire first
+      const durationWithBuffer = currentDuration + 1000; // Add 1 second buffer
+      
+      // Set timeout to advance to next slide after video finishes (as a fallback)
       timeout = setTimeout(() => {
+        console.log('Auto-advance timeout triggered (fallback)');
         setCurrentIndex((prevIndex) => 
           prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
         );
-      }, currentDuration);
+      }, durationWithBuffer);
     }
 
     return () => {
@@ -98,16 +104,53 @@ const Testimonials = () => {
     };
   }, [currentIndex, testimonials.length, videoDurations, isInView, autoplayEnabled]);
 
+  // Add global user interaction detection
+  useEffect(() => {
+    const handleInteraction = () => {
+      if (!userInteracted) {
+        console.log('User interaction detected, enabling sound');
+        setUserInteracted(true);
+      }
+    };
+
+    // Add event listeners for common user interactions
+    document.addEventListener('click', handleInteraction);
+    document.addEventListener('touchstart', handleInteraction);
+    document.addEventListener('keydown', handleInteraction);
+
+    return () => {
+      // Clean up event listeners on component unmount
+      document.removeEventListener('click', handleInteraction);
+      document.removeEventListener('touchstart', handleInteraction);
+      document.removeEventListener('keydown', handleInteraction);
+    };
+  }, [userInteracted]);
+
   // Animation when section comes into view
   useEffect(() => {
     if (isInView) {
       controls.start('visible');
+      
+      // If we have videos and user has interacted, make sure we respect both conditions
+      if (videoRefs.current && videoRefs.current[currentIndex] && userInteracted) {
+        videoRefs.current[currentIndex].muted = false;
+        console.log('Section in view, unmuting video if user has interacted');
+      }
+    } else {
+      // When section scrolls out of view, mute all videos
+      videoRefs.current.forEach(videoEl => {
+        if (videoEl) {
+          videoEl.muted = true;
+          console.log('Section out of view, muting all videos');
+        }
+      });
     }
-  }, [isInView, controls]);
+  }, [isInView, controls, currentIndex, userInteracted]);
 
   // Handle manual navigation
   const handlePrev = () => {
     setAutoplayEnabled(false); // Disable autoplay when user interacts manually
+    setUserInteracted(true); // Mark that user has interacted with the page
     setCurrentIndex((prevIndex) => 
       prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
     );
@@ -115,6 +158,7 @@ const Testimonials = () => {
 
   const handleNext = () => {
     setAutoplayEnabled(false); // Disable autoplay when user interacts manually
+    setUserInteracted(true); // Mark that user has interacted with the page
     setCurrentIndex((prevIndex) => 
       prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
     );
@@ -123,6 +167,7 @@ const Testimonials = () => {
   // Handle dot navigation
   const handleDotClick = (index) => {
     setAutoplayEnabled(false); // Disable autoplay when user interacts manually
+    setUserInteracted(true); // Mark that user has interacted with the page
     setCurrentIndex(index);
   };
 
@@ -149,16 +194,32 @@ const Testimonials = () => {
     },
   };
 
-  // Ensure videos play when they become active
+  // Ensure videos play when they become active and handle sound based on userInteracted state
   useEffect(() => {
+    // Pause all videos first
+    videoRefs.current.forEach((videoEl, index) => {
+      if (videoEl && index !== currentIndex) {
+        videoEl.pause();
+        // Ensure non-active videos are muted
+        videoEl.muted = true;
+      }
+    });
+
     // Only try to play if we have a valid video reference
     if (videoRefs.current && videoRefs.current[currentIndex]) {
       const videoElement = videoRefs.current[currentIndex];
       videoElement.currentTime = 0;
       
+      // Set muted state based on user interaction AND if section is in view
+      videoElement.muted = !userInteracted || !isInView;
+      
       // Log video information for debugging
       console.log(`Attempting to play video ${currentIndex}:`, {
         src: videoElement.src,
+        muted: videoElement.muted,
+        userInteracted: userInteracted,
+        isInView: isInView,
+        autoplayEnabled: autoplayEnabled,
         readyState: videoElement.readyState,
         networkState: videoElement.networkState
       });
@@ -172,12 +233,29 @@ const Testimonials = () => {
           console.log("Autoplay prevented:", error);
           // If autoplay is prevented due to browser policies,
           // we might want to show a play button overlay or other UI
+          
+          // For most browsers, we need a user interaction to play with sound
+          if (!userInteracted) {
+            console.log("Retrying with muted video due to browser policy");
+            videoElement.muted = true;
+            videoElement.play().catch(e => {
+              console.error("Still can't play video:", e);
+              // Since we can't play the video, let's manually advance after a delay
+              if (autoplayEnabled) {
+                setTimeout(() => {
+                  setCurrentIndex(prevIndex => 
+                    prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
+                  );
+                }, 5000); // Wait 5 seconds before advancing if video can't play
+              }
+            });
+          }
         });
       }
     } else {
       console.log(`No video reference for index ${currentIndex}`);
     }
-  }, [currentIndex]);
+  }, [currentIndex, userInteracted, isInView, testimonials.length, autoplayEnabled]);
 
   return (
     <section id="testimonials" ref={containerRef} className="py-20 md:py-32 bg-black overflow-hidden">
@@ -224,20 +302,42 @@ const Testimonials = () => {
                           className="absolute inset-0 w-full h-full object-cover"
                           controls
                           playsInline
-                          muted
+                          muted={!userInteracted || !isInView || currentIndex !== testimonials.indexOf(testimonial)}
                           loop={false}
                           preload="auto"
                           poster={testimonial.posterUrl || ''}
                           autoPlay={currentIndex === testimonials.indexOf(testimonial)}
+                          onClick={() => {
+                            setUserInteracted(true);
+                            // If this is the current video and it's muted, unmute it
+                            if (currentIndex === testimonials.indexOf(testimonial) && videoRefs.current[currentIndex].muted) {
+                              videoRefs.current[currentIndex].muted = false;
+                            }
+                          }}
                           onEnded={() => {
+                            console.log('Video ended, autoplay:', autoplayEnabled);
                             if (autoplayEnabled) {
-                              handleNext();
+                              // Just advance to the next slide without changing autoplay state
+                              setCurrentIndex((prevIndex) => 
+                                prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
+                              );
                             }
                           }}
                           onError={(e) => {
                             console.error(`Error playing video:`, e);
                           }}
                         ></video>
+                        
+                        {/* Sound notification overlay */}
+                        {isInView && !userInteracted && currentIndex === testimonials.indexOf(testimonial) && (
+                          <div className="absolute top-4 right-4 bg-black/70 text-white p-2 rounded-lg flex items-center space-x-2 cursor-pointer backdrop-blur-sm"
+                               onClick={() => setUserInteracted(true)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M12 9.5l-3-3m0 0l-3 3m3-3v12" />
+                            </svg>
+                            <span className="text-sm font-medium">Click to enable sound</span>
+                          </div>
+                        )}
                         
                         {/* Fallback for when video doesn't load */}
                         <div className="absolute inset-0 flex items-center justify-center bg-gray-900 text-white z-[-1]">
