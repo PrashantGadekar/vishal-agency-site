@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Creative Agency - Modern Portfolio",
+  title: "TheViSocial",
   description: "A modern creative agency portfolio showcasing innovative design and development services",
 };
 
