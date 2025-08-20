@@ -16,26 +16,26 @@ const IntroducingUs = () => {
     {
       id: 1,
       title: 'Creative Process',
-      url: 'https://www.youtube.com/watch?v=/o89K4MLpK1c',
+      url: '/videos/website-edit-1.mp4',
       // url: '/videos/creative-process.mp4', // Local video path in public folder
       direction: 'left',
     },
     {
       id: 2,
       title: 'Client Success Stories',
-      url: '/videos/client-stories.mp4', // Local video path
+      url: '/videos/website-edit-2.mp4', // Local video path
       direction: 'right',
     },
     {
       id: 3,
       title: 'Behind the Scenes',
-      url: '/videos/behind-scenes.mp4', // Local video path
+      url: '/videos/website-edit-3.mp4', // Local video path
       direction: 'left',
     },
     {
       id: 4,
       title: 'Team Showcase',
-      url: '/videos/team-showcase.mp4', // Local video path
+      url: '/videos/website-edit-4.mp4', // Local video path
       direction: 'right',
     },
   ];

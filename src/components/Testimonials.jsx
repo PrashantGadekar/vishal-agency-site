@@ -18,7 +18,7 @@ const Testimonials = () => {
       id: 1,
       name: "Alex Johnson",
       position: "CEO, TechInnovate",
-      videoUrl: "/videos/creative-process.mp4", // Make sure this file exists in public/videos/
+      videoUrl: "/videos/video-01.mp4", // Make sure this file exists in public/videos/
       quote: "Working with this team transformed our digital presence. The results exceeded our expectations!",
       highlight: "transformed our digital presence"
     },
@@ -26,7 +26,7 @@ const Testimonials = () => {
       id: 2,
       name: "Sarah Williams",
       position: "Marketing Director, BrandElevate",
-      videoUrl: "/videos/client-stories.mp4", // Make sure this file exists in public/videos/
+      videoUrl: "/videos/video-02.mp4", // Make sure this file exists in public/videos/
       quote: "The content strategy they developed doubled our engagement rates within just two months.",
       highlight: "doubled our engagement rates"
     },
@@ -34,7 +34,7 @@ const Testimonials = () => {
       id: 3,
       name: "Michael Chen",
       position: "Founder, GrowthHub",
-      videoUrl: "/videos/behind-scenes.mp4", // Make sure this file exists in public/videos/
+      videoUrl: "/videos/video-03.mp4", // Make sure this file exists in public/videos/
       quote: "Their creative approach to video production helped us stand out in a crowded market.",
       highlight: "helped us stand out"
     },
@@ -42,7 +42,7 @@ const Testimonials = () => {
       id: 4,
       name: "Olivia Rodriguez",
       position: "Content Creator",
-      videoUrl: "/videos/team-showcase.mp4", // Make sure this file exists in public/videos/
+      videoUrl: "/videos/video-04.mp4", // Make sure this file exists in public/videos/
       quote: "The quality and consistency of their work has helped me build a loyal audience across platforms.",
       highlight: "build a loyal audience"
     }
