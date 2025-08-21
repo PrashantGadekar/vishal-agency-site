@@ -116,8 +116,17 @@ const IntroducingUs = () => {
   };
 
   return (
-    <section ref={sectionRef} id="introducing-us" className="py-20 md:py-32 bg-black overflow-hidden">
-      <div className="container mx-auto px-6 max-w-6xl">
+    <section ref={sectionRef} id="introducing-us" className="py-20 md:py-32 bg-black overflow-hidden relative">
+      <div 
+        className="absolute inset-0" 
+        style={{
+          backgroundImage: 'url("/images/Introduction/Grid.png")',
+          backgroundRepeat: 'repeat',
+          opacity: 0.2
+        }}
+      ></div>
+      
+      <div className="container mx-auto px-6 max-w-6xl relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
