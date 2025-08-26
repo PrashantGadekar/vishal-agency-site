@@ -42,8 +42,8 @@ const Header = () => {
           <a href="#home" className="flex items-center space-x-2">
             
             <div className="flex flex-col leading-tight">
-              <span className="text-white">the</span>
-              <span className="text-blue-400" style={{ justifyContent: 'center' }}>ViSocial</span>
+              {/* <span className="text-white">the</span> */}
+              <span className="text-blue-400" style={{ justifyContent: 'center' }}>theViSocial</span>
             </div>
           </a>
 

@@ -3,49 +3,27 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import Image from 'next/image';
 
 const Services = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.1 });
 
-  // SVG icons for services
-  const UploadIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-blue-400">
-      <path d="M11 14.9861C11 15.5384 11.4477 15.9861 12 15.9861C12.5523 15.9861 13 15.5384 13 14.9861V7.82831L16.2428 11.0711C16.6333 11.4616 17.2665 11.4616 17.657 11.0711C18.0475 10.6806 18.0475 10.0474 17.657 9.65692L12.7071 4.70692C12.3166 4.31639 11.6834 4.31639 11.2929 4.70692L6.34292 9.65692C5.95239 10.0474 5.95239 10.6806 6.34292 11.0711C6.73344 11.4616 7.36661 11.4616 7.75713 11.0711L11 7.82831V14.9861Z" />
-      <path d="M4 14C4 13.4477 3.55228 13 3 13C2.44772 13 2 13.4477 2 14V16C2 18.2091 3.79086 20 6 20H18C20.2091 20 22 18.2091 22 16V14C22 13.4477 21.5523 13 21 13C20.4477 13 20 13.4477 20 14V16C20 17.1046 19.1046 18 18 18H6C4.89543 18 4 17.1046 4 16V14Z" />
-    </svg>
-  );
-  
-  const EditIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-purple-400">
-      <path d="M21.2635 2.29289C20.873 1.90237 20.2398 1.90237 19.8493 2.29289L18.9769 3.16525C17.8618 2.63254 16.4857 2.82181 15.5621 3.74534L4.95549 14.3519L10.6066 20.0031L21.2132 9.39645C22.1367 8.47292 22.326 7.09681 21.7933 5.98175L22.6656 5.10938C23.0562 4.71885 23.0562 4.08569 22.6656 3.69516L21.2635 2.29289ZM16.9955 10.8035L10.6066 17.1924L7.78392 14.3698L14.1728 7.98093L16.9955 10.8035ZM16.0382 5.53475L17.8241 7.32063L19.1425 5.98175C19.5331 5.59123 19.5331 4.95806 19.1425 4.56754C18.752 4.17702 18.1188 4.17702 17.7283 4.56754L16.0382 5.53475Z" />
-      <path d="M2 22.9502L4.12171 15.1717L9.77817 20.8289L2 22.9502Z" />
-    </svg>
-  );
-  
-  const ShareIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-green-400">
-      <path d="M15 8C15 10.2091 13.2091 12 11 12C8.79086 12 7 10.2091 7 8C7 5.79086 8.79086 4 11 4C13.2091 4 15 5.79086 15 8Z" />
-      <path d="M11 14C6.58172 14 3 17.5817 3 22H19C19 17.5817 15.4183 14 11 14Z" />
-      <path d="M18 2V6M16 4H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  );
-
   const services = [
     {
-      icon: <UploadIcon />,
+      image: '/images/Submit_Icon.png',
       title: 'Submit Your Recordings',
       description: 'Just film your content, send it our way, and we will handle the rest.',
       features: ['Easy file upload', 'Multiple formats supported', 'Secure file handling', 'Quick processing'],
     },
     {
-      icon: <EditIcon />,
+      image: '/images/Polished.png',
       title: 'Polished to Perfection',
       description: 'Our creative team edits with precision, aligning every video to your unique style and brand voice.',
       features: ['Custom brand styling', 'Professional editing', 'Visual storytelling', 'Brand consistency'],
     },
     {
-      icon: <ShareIcon />,
+      image: '/images/Submit_Icon.png',
       title: 'Expand Your Reach',
       description: 'Your content is repurposed and distributed across platforms to maximize attention and engagement.',
       features: ['Multi-platform distribution', 'Optimized for each platform', 'Engagement optimization', 'Performance tracking'],
@@ -96,7 +74,7 @@ const Services = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-1 gap-12"
+          className="grid grid-cols-1 md:grid-cols-3 gap-12"
         >
           {services.map((service, index) => (
             <motion.div
@@ -112,9 +90,14 @@ const Services = () => {
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
-                  className="w-16 h-16 mb-6 block"
+                  className="w-24 h-24 mb-6 relative"
                 >
-                  {service.icon}
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-contain"
+                  />
                 </motion.div>
 
                 {/* <br/> */}
@@ -149,7 +132,7 @@ const Services = () => {
         </motion.div>
 
         {/* Call to action */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.5 }}
@@ -166,7 +149,7 @@ const Services = () => {
           >
             Book a call
           </motion.a>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

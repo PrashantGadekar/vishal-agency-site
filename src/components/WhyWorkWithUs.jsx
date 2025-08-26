@@ -11,19 +11,19 @@ const WhyWorkWithUs = () => {
   // Reasons to work with us - will be replaced with proper images once created by designer
   const reasons = [
     {
-      image: '/images/why-work-with-us/Growth.png', // placeholder - designer will create this
+      image: '/images/why-work-with-us/Growth_1.png', // placeholder - designer will create this
       title: 'Grow within Months',
-      description: 'We help you increase your viewership count within a set period. Our strategic approach ensures consistent growth across platforms.'
+      description: 'We help you increase your viewership count within a set period.'
     },
     {
-      image: '/images/why-work-with-us/custom-design.png', // placeholder - designer will create this
+      image: '/images/why-work-with-us/custom-design_1.png', // placeholder - designer will create this
       title: 'Custom Design',
-      description: 'Custom elements built from scratch to cater to your specific needs. Every visual element is designed to match your brand identity.'
+      description: 'Custom elements built from scratch to cater to your specific needs.'
     },
     {
-      image: '/images/why-work-with-us/growth-method.png', // placeholder - designer will create this
+      image: '/images/why-work-with-us/growth-method_1.png', // placeholder - designer will create this
       title: 'Proven Growth Methods',
-      description: 'Elevate your personal brand to new heights with our unique strategies. We implement techniques that have been tested and proven effective.'
+      description: 'Elevate your personal brand to new heights with our unique strategies.'
     }
     // ,
     // {
@@ -67,7 +67,7 @@ const WhyWorkWithUs = () => {
 
   return (
     <section id="why-work-with-us" ref={ref} className="py-20 md:py-32 bg-black">
-      <div className="container mx-auto px-6 max-w-6xl">
+      <div className="container mx-auto px-6 max-w-8xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -87,14 +87,14 @@ const WhyWorkWithUs = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="space-y-16"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           {reasons.map((reason, index) => (
             <motion.div
               key={index}
               variants={cardVariants}
               whileHover={{ y: -5, transition: { duration: 0.3 } }}
-              className="group bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm rounded-2xl p-10 border border-gray-700/50"
+              className="group bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm rounded-2xl p-3 border border-gray-700/50"
             >
               <div className="flex flex-col items-center text-center">
                 {/* Image will be in the middle - placeholder until designer creates them */}
