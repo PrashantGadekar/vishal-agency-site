@@ -84,10 +84,10 @@ const Hero = () => {
         <motion.h1
           variants={itemVariants}
           className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 leading-none text-center max-w-5xl mx-auto"
-          style={{ marginBottom: '3rem' }}
+          style={{ fontFamily: 'Rude-ExtraBold', marginBottom: '3rem' }}
         >
           STRATEGIC CONTENT PRODUCTION AND{' '}
-          <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+          <span className="text-blue-400" style={{ fontFamily: 'Rude-ExtraBold' }}>
             DISTRIBUTION
           </span>{' '}
           FOR FOUNDERS & CREATORS
@@ -96,6 +96,7 @@ const Hero = () => {
         <motion.p
           variants={itemVariants}
           className="text-lg md:text-base text-gray-400 mb-8 max-w-4xl mx-auto leading-relaxed text-center"
+          style={{ fontFamily: 'Montreal-Regular' }}
         >
           Turn your knowledge and expertise into a powerful digital presence with high impact video content that increases visibility, 
           builds audience trust, and positions you as the go-to leader in your space.

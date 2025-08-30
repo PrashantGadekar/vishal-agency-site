@@ -41,9 +41,9 @@ const Header = () => {
         >
           <a href="#home" className="flex items-center space-x-2">
             
-            <div className="flex flex-col leading-tight">
-              {/* <span className="text-white">the</span> */}
-              <span className="text-blue-400" style={{ justifyContent: 'center' }}>theViSocial</span>
+            <div className="flex flex-row leading-tight items-center">
+              <span style={{ color: '#fff', fontFamily: 'Montreal-Bold', justifyContent: 'center' }}>the</span>
+              <span className="text-blue-400" style={{ fontFamily: 'Montreal-Bold', justifyContent: 'center', marginLeft: '0' }}>ViSocial</span>
             </div>
           </a>
 

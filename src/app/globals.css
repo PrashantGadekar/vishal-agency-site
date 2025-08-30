@@ -1,3 +1,14 @@
+/* Animated border for videos */
+.animated-border {
+  border: 1px solid #3b82f6; /* Tailwind blue-500 */
+  border-radius: 1rem;
+  box-shadow: 0 0 0 0 #3b82f6;
+  transition: box-shadow 0.4s ease;
+}
+
+.animated-border:hover {
+  box-shadow: 0 0 16px 0 #3b82f6;
+}
 @import "tailwindcss";
 
 /* * {
@@ -6,9 +17,40 @@
   box-sizing: border-box;
 } */
 
+/* Custom Fonts */
+@font-face {
+  font-family: 'Montreal-Bold';
+  src: url('/fonts/Montreal-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montreal-Regular';
+  src: url('/fonts/Montreal-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Rude-ExtraBold';
+  src: url('/fonts/Rude-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
 /* Base spacing for common elements */
 p, h1, h2, h3, h4, h5, h6, ul, ol {
   margin-bottom: 1rem;
+}
+
+/* Font family for headings and body */
+h1:not(.hero-heading), h2, h3, h4, h5, h6 {
+  font-family: 'Montreal-Bold', sans-serif;
+}
+
+p, ul, ol, li, span, div, a, button, input, textarea {
+  font-family: 'Montreal-Regular', sans-serif;
 }
 
 /* Add some padding to container elements */

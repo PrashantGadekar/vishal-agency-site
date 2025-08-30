@@ -169,7 +169,7 @@ const IntroducingUs = () => {
                     <>
                       <video 
                         src={video.url}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover animated-border"
                         preload="metadata"
                         muted
                         playsInline
@@ -202,7 +202,7 @@ const IntroducingUs = () => {
                     // Video player that plays automatically
                     <video 
                       src={video.url}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover animated-border"
                       controls
                       autoPlay={true}
                       muted={true}
@@ -219,9 +219,9 @@ const IntroducingUs = () => {
                   )}
                 </div>
                 
-                <div className="p-4 bg-gray-900">
+                {/* <div className="p-4 bg-gray-900">
                   <h3 className="font-medium text-xl text-white">{video.title}</h3>
-                </div>
+                </div> */}
               </motion.div>
             ))}
           </div>
@@ -260,7 +260,7 @@ const IntroducingUs = () => {
                 ></iframe>
                 <video 
                   src={videos[activeVideo]?.url}
-                  className="w-full h-full"
+                  className="w-full h-full animated-border"
                   controls
                   autoPlay={true}
                   playsInline
