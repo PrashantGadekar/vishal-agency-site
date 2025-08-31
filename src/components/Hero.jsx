@@ -81,6 +81,87 @@ const Hero = () => {
         animate="visible"
         className="relative z-10 text-center px-6 max-w-6xl mx-auto"
       >
+        {/* Floating Hero Images - positioned relative to content */}
+        <motion.div
+          className="absolute -top-16 -right-20 md:-top-16 md:-right-20 -top-32 right-4 w-28 h-28 rounded-lg overflow-hidden shadow-lg"
+          animate={{ 
+            y: [0, -20, 0],
+            rotate: [0, 5, -5, 0]
+          }}
+          transition={{ 
+            duration: 4, 
+            repeat: Infinity, 
+            ease: "easeInOut",
+            delay: 0
+          }}
+        >
+          <img 
+            src="/images/Hero/social-media.png" 
+            alt="Social Media metrics" 
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+
+        <motion.div
+          className="hidden md:block absolute bottom-4 -left-20 w-28 h-28 rounded-lg overflow-hidden shadow-lg"
+          animate={{ 
+            y: [0, 15, 0],
+            rotate: [0, -3, 3, 0]
+          }}
+          transition={{ 
+            duration: 5, 
+            repeat: Infinity, 
+            ease: "easeInOut",
+            delay: 1
+          }}
+        >
+          <img 
+            src="/images/Hero/likes.png" 
+            alt="Likes metrics" 
+            className="w-full h-full object-contain"
+          />
+        </motion.div>
+
+        <motion.div
+          className="hidden md:block absolute -top-12 -left-28 w-32 h-32 rounded-lg overflow-hidden shadow-lg"
+          animate={{ 
+            y: [0, -25, 0],
+            rotate: [0, 8, -8, 0]
+          }}
+          transition={{ 
+            duration: 6, 
+            repeat: Infinity, 
+            ease: "easeInOut",
+            delay: 2
+          }}
+        >
+          <img 
+            src="/images/Hero/counts.png" 
+            alt="Count metrics" 
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+
+        <motion.div
+          className="hidden md:block absolute bottom-4 -right-28 w-32 h-32 rounded-lg overflow-hidden shadow-lg"
+          animate={{ 
+            y: [0, 18, 0],
+            rotate: [0, -6, 6, 0]
+          }}
+          transition={{ 
+            duration: 4.5, 
+            repeat: Infinity, 
+            ease: "easeInOut",
+            delay: 3
+          }}
+        >
+          <img 
+            src="/images/Hero/views.png" 
+            alt="Views metrics" 
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+
         <motion.h1
           variants={itemVariants}
           className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 leading-none text-center max-w-5xl mx-auto"
