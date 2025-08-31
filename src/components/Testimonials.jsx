@@ -20,32 +20,32 @@ const Testimonials = () => {
       name: "",
       position: "CEO, TechInnovate",
       videoUrl: "/videos/video-01.mp4", // Make sure this file exists in public/videos/
-      quote: "Working with this team transformed our digital presence. The results exceeded our expectations!",
-      highlight: "transformed our digital presence"
+      quote: "Everything about my experience with him was positive. Go with Vishal.",
+      highlight: "Go with Vishal."
     },
     {
       id: 2,
       name: "",
       position: "Marketing Director, BrandElevate",
       videoUrl: "/videos/video-02.mp4", // Make sure this file exists in public/videos/
-      quote: "The content strategy they developed doubled our engagement rates within just two months.",
-      highlight: "doubled our engagement rates"
+      quote: "I highly recommend his services..",
+      highlight: "recommend"
     },
     {
       id: 3,
       name: "",
       position: "Founder, GrowthHub",
       videoUrl: "/videos/video-03.mp4", // Make sure this file exists in public/videos/
-      quote: "Their creative approach to video production helped us stand out in a crowded market.",
-      highlight: "helped us stand out"
+      quote: "I couldn't have done it without Vishal.",
+      highlight: "without Vishal."
     },
     {
       id: 4,
       name: "",
       position: "Content Creator",
       videoUrl: "/videos/video-04.mp4", // Make sure this file exists in public/videos/
-      quote: "The quality and consistency of their work has helped me build a loyal audience across platforms.",
-      highlight: "build a loyal audience"
+      quote: "I think he produces great work and also does it for a great value",
+      highlight: "for a great value"
     }
   ];
 
@@ -268,11 +268,11 @@ const Testimonials = () => {
         >
           {/* Section Heading */}
           <div className="space-y-3 text-center">
-            <motion.p variants={itemVariants} className="uppercase text-blue-400 tracking-wider font-medium">
-              CLIENT TESTIMONIALS
-            </motion.p>
-            <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold text-white">
+            {/* <motion.p variants={itemVariants} className="uppercase text-blue-400 tracking-wider font-medium">
               SUCCESS STORIES
+            </motion.p> */}
+            <motion.h2 variants={itemVariants} className="text-4xl text-blue-400 md:text-5xl font-bold text-blue-400">
+              CLIENT TESTIMONIALS
             </motion.h2>
             <motion.p variants={itemVariants} className="text-gray-400 max-w-3xl mt-4 mx-auto">
               Hear from our clients about how our services have helped them achieve their goals

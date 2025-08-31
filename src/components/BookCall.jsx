@@ -37,7 +37,7 @@ const BookCall = () => {
             Book a free discovery call with our team to learn more.
           </motion.p>
           <motion.a
-            href="#contact"
+            href="https://calendly.com/vishalkale/30min"
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
             initial={{ opacity: 0, y: 20 }}

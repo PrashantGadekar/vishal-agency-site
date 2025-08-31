@@ -68,7 +68,7 @@ const Header = () => {
           
           {/* CTA Button */}
           <motion.a
-            href="#contact"
+            href="https://calendly.com/vishalkale/30min"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
@@ -127,7 +127,7 @@ const Header = () => {
             </motion.a>
           ))}
           <motion.a
-            href="#contact"
+            href="https://calendly.com/vishalkale/30min"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3, delay: navItems.length * 0.1 }}

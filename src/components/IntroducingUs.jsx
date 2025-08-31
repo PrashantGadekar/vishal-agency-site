@@ -135,11 +135,11 @@ const IntroducingUs = () => {
         >
           {/* Section Heading */}
           <div className="space-y-3 text-center">
-            <motion.p variants={itemVariants} className="uppercase text-blue-400 tracking-wider font-medium">
-              OUR STORY
-            </motion.p>
-            <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold text-white">
+            {/* <motion.p variants={itemVariants} className="uppercase text-blue-400 tracking-wider font-medium">
               INTRODUCING US
+            </motion.p> */}
+            <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold text-blue-400">
+              OUR STORY
             </motion.h2>
             <motion.p variants={itemVariants} className="text-gray-400 max-w-3xl mt-4 mx-auto">
               We specialize in transforming everyday recordings into powerful, 
