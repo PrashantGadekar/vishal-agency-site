@@ -21,7 +21,7 @@ export default function Home() {
       <Services />
       {/* <Portfolio /> */}
       <Testimonials />
-      {/* <About /> */}
+      <About />
       <WhyWorkWithUs />
       <BookCall />
       {/* <Contact /> */}

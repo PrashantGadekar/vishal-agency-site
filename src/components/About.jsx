@@ -70,18 +70,16 @@ const About = () => {
   const isInView = useInView(ref, { once: false, threshold: 0.1 });
   // State to track animated counter values
   const [counters, setCounters] = useState({
-    projects: 0,
-    clients: 0,
-    experience: 0,
-    support: 0
+    videos: 0,
+    views: 0,
+    viewcount: 0
   });
 
   // Original target values for counters
   const stats = [
-    { id: 'projects', number: '100+', label: 'Projects Completed', target: 100 },
-    { id: 'clients', number: '50+', label: 'Happy Clients', target: 50 },
-    { id: 'experience', number: '5+', label: 'Years Experience', target: 5 },
-    { id: 'support', number: '24/7', label: 'Support Available', target: 24 },
+    { id: 'videos', number: '8768', label: 'Videos Created', target: 8768 },
+    { id: 'views', number: '30M+', label: 'Views', target: 30000000 },
+    { id: 'viewcount', number: '1231232', label: 'Total Viewcount (hrs)', target: 1231232 },
   ];
 
   // Animation for counters when section comes into view
@@ -92,13 +90,12 @@ const About = () => {
     if (isInView) {
       // Reset counters to 0 when section comes into view
       setCounters({
-        projects: 0,
-        clients: 0,
-        experience: 0,
-        support: 0
+        videos: 0,
+        views: 0,
+        viewcount: 0
       });
       
-      // Add a 2-second delay before starting the animation
+      // Add a delay before starting the animation
       startDelayTimeout = setTimeout(() => {
         // Duration of the counter animation in ms
         const animationDuration = 2000;
@@ -112,10 +109,9 @@ const About = () => {
           
           // Update all counters based on progress
           setCounters({
-            projects: Math.floor(progress * stats[0].target),
-            clients: Math.floor(progress * stats[1].target),
-            experience: Math.floor(progress * stats[2].target),
-            support: Math.floor(progress * stats[3].target)
+            videos: Math.floor(progress * stats[0].target),
+            views: Math.floor(progress * stats[1].target),
+            viewcount: Math.floor(progress * stats[2].target)
           });
           
           // Stop the interval when animation is complete
@@ -123,14 +119,13 @@ const About = () => {
             clearInterval(interval);
           }
         }, 16); // ~60fps
-      }, 1000); // 1-second delay before animation starts
+      }, 500); // 0.5-second delay before animation starts
     } else {
       // Reset counters when section leaves view
       setCounters({
-        projects: 0,
-        clients: 0,
-        experience: 0,
-        support: 0
+        videos: 0,
+        views: 0,
+        viewcount: 0
       });
     }
     
@@ -141,232 +136,54 @@ const About = () => {
     };
   }, [isInView]);
 
-  const values = [
-    // {
-    //   icon: <TargetIcon />,
-    //   title: 'Innovation',
-    //   description: 'We constantly push boundaries to deliver cutting-edge solutions.',
-    // },
-    // {
-    //   icon: <HandshakeIcon />,
-    //   title: 'Collaboration',
-    //   description: 'We work closely with our clients to achieve their vision.',
-    // },
-    // {
-    //   icon: <BoltIcon />,
-    //   title: 'Excellence',
-    //   description: 'We strive for perfection in every project we undertake.',
-    // },
-    // {
-    //   icon: <RocketIcon />,
-    //   title: 'Growth',
-    //   description: 'We help businesses scale and reach their full potential.',
-    // },
-  ];
+  const values = [];
 
   return (
     <section id="about" ref={ref} className="section-padding bg-black">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Content Side */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              About <span className="gradient-text">Our Agency</span>
-            </h2>
-            
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              We are a creative digital agency passionate about crafting exceptional 
-              digital experiences. Our team of designers, developers, and strategists 
-              work together to bring your vision to life.
-            </p>
-
-            <p className="text-lg text-gray-400 mb-12 leading-relaxed">
-              Founded in 2019, we've grown from a small startup to a trusted partner 
-              for businesses worldwide. We believe in the power of great design and 
-              innovative technology to transform businesses and create meaningful 
-              connections with users.
-            </p>
-
-            {/* Stats */}
-            {/* <div className="grid grid-cols-2 gap-8 mb-12">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={isInView ? { scale: 1 } : { scale: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 + 0.2 }}
-                    className="text-3xl md:text-4xl font-bold gradient-text mb-2"
-                  >
-                    {stat.id === 'projects' ? `${counters.projects}+` : 
-                     stat.id === 'clients' ? `${counters.clients}+` : 
-                     stat.id === 'experience' ? `${counters.experience}+` : 
-                     stat.id === 'support' ? `${counters.support}/7` : stat.number}
-                  </motion.div>
-                  <p className="text-gray-400 text-sm uppercase tracking-wide">
-                    {stat.label}
-                  </p>
-                </motion.div>
-              ))}
-            </div> */}
-
-            {/* <motion.a
-              href="#portfolio"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-primary text-lg px-8 py-4"
-            >
-              See Our Work
-            </motion.a> */}
-          </motion.div>
-
-          {/* Visual Side */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
-          >
-            {/* Main Image Placeholder */}
-            {/* <div className="relative glass-effect rounded-2xl overflow-hidden h-96 mb-8"> */}
-            <div style={{ marginTop: 'auto' }}>
-              {/* <div className="w-full h-full bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center">
-                <div className="w-16 h-16">
-                  <BuildingIcon />
-                </div>
-              </div> */}
-              
-              {/* Floating elements */}
-              {/* <motion.div
-                className="absolute top-4 right-4 w-16 h-16 glass-effect rounded-full flex items-center justify-center"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-              >
-                <div className="w-8 h-8">
-                  <BoltIcon />
-                </div>
-              </motion.div> */}
-              
-              
-              {/* <motion.div
-                className="absolute bottom-4 left-4 w-12 h-12 glass-effect rounded-full flex items-center justify-center"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <div className="w-6 h-6">
-                  <PaletteIcon />
-                </div>
-              </motion.div> */}
-
-
-              {/* Stats here added */}
-              {/* Stats */}
-            <div className="grid grid-cols-2 gap-8 mb-12">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={isInView ? { scale: 1 } : { scale: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 + 0.2 }}
-                    className="text-3xl md:text-4xl font-bold gradient-text mb-2"
-                  >
-                    {stat.id === 'projects' ? `${counters.projects}+` : 
-                     stat.id === 'clients' ? `${counters.clients}+` : 
-                     stat.id === 'experience' ? `${counters.experience}+` : 
-                     stat.id === 'support' ? `${counters.support}/7` : stat.number}
-                  </motion.div>
-                  <p className="text-gray-400 text-sm uppercase tracking-wide">
-                    {stat.label}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-            </div>
-
-            {/* Secondary Images */}
-            {/* <div className="grid grid-cols-2 gap-4">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="glass-effect rounded-xl h-32 bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center"
-              >
-                <div className="w-10 h-10">
-                  <ComputerIcon />
-                </div>
-              </motion.div>
-              
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="glass-effect rounded-xl h-32 bg-gradient-to-br from-pink-500 to-red-600 flex items-center justify-center"
-              >
-                <div className="w-10 h-10">
-                  <MobileIcon />
-                </div>
-              </motion.div>
-            </div> */}
-          </motion.div>
-        </div>
-
-        {/* Values Section */}
-        {/* <motion.div
+        {/* Centered Stats Section */}
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-24"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex justify-center items-center"
         >
-          <h3 className="text-3xl md:text-4xl font-bold text-center mb-16">
-            Our <span className="gradient-text">Values</span>
-          </h3>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <motion.div
-                key={value.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.6, delay: index * 0.1 + 0.6 }}
-                whileHover={{ y: -5 }}
-                className="text-center group"
-              >
+          <div className="max-w-4xl mx-auto">
+            {/* Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 lg:gap-16 relative">
+              {stats.map((stat, index) => (
                 <motion.div
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  className="w-16 h-16 mb-4 inline-block"
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  className="text-center relative"
                 >
-                  {value.icon}
+                  {/* Glowing vertical divider - only show on md+ screens and not on last item */}
+                  {index < stats.length - 1 && (
+                    <div className="hidden md:block absolute -right-6 lg:-right-8 top-1/2 transform -translate-y-1/2 h-30 w-px bg-gradient-to-b from-transparent via-blue-400 to-transparent opacity-60">
+                      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-400 to-transparent blur-sm opacity-80"></div>
+                    </div>
+                  )}
+                  
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={isInView ? { scale: 1 } : { scale: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-400 mb-3"
+                  >
+                    {stat.id === 'videos' ? `${counters.videos.toLocaleString()}` : 
+                     stat.id === 'views' ? `${(counters.views / 1000000).toFixed(0)}M+` : 
+                     stat.id === 'viewcount' ? `${counters.viewcount.toLocaleString()}` : stat.number}
+                  </motion.div>
+                  <p className="text-white text-base sm:text-lg md:text-xl font-medium">
+                    {stat.label}
+                  </p>
                 </motion.div>
-                
-                <h4 className="text-xl font-bold text-white mb-3 group-hover:gradient-text transition-all duration-300">
-                  {value.title}
-                </h4>
-                
-                <p className="text-gray-400 leading-relaxed">
-                  {value.description}
-                </p>
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </div>
-        </motion.div> */}
+        </motion.div>
       </div>
     </section>
   );
