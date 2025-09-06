@@ -38,6 +38,8 @@ const BookCall = () => {
           </motion.p>
           <motion.a
             href="https://calendly.com/vishalkale/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
             initial={{ opacity: 0, y: 20 }}

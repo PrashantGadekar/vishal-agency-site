@@ -18,9 +18,8 @@ const Header = () => {
 
   const navItems = [
     { name: 'Process', href: '#services' },
-    { name: 'Work', href: '#portfolio' },
-    { name: 'Testimonials', href: '#about' },
-    { name: 'FAQs', href: '#contact' },
+    { name: 'Work', href: '#introducing-us' },
+    { name: 'Testimonials', href: '#testimonials' },
   ];
 
   return (
@@ -69,6 +68,8 @@ const Header = () => {
           {/* CTA Button */}
           <motion.a
             href="https://calendly.com/vishalkale/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
@@ -128,6 +129,8 @@ const Header = () => {
           ))}
           <motion.a
             href="https://calendly.com/vishalkale/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3, delay: navItems.length * 0.1 }}

@@ -90,6 +90,8 @@ const Footer = () => {
                     <motion.a
                       key={social.name}
                       href={social.url}
+                      target={social.url !== '#' ? '_blank' : '_self'}
+                      rel={social.url !== '#' ? 'noopener noreferrer' : ''}
                       initial={{ opacity: 0, scale: 0 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.3, delay: index * 0.1 }}

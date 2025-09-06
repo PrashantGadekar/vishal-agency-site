@@ -83,7 +83,7 @@ const Hero = () => {
       >
         {/* Floating Hero Images - positioned relative to content */}
         <motion.div
-          className="absolute -top-16 -right-20 md:-top-16 md:-right-20 -top-32 right-4 w-28 h-28 rounded-lg overflow-hidden shadow-lg"
+          className="absolute -top-16 -right-32 md:-top-16 md:-right-32 -top-32 right-2 w-48 h-48 rounded-lg overflow-hidden shadow-lg"
           animate={{ 
             y: [0, -20, 0],
             rotate: [0, 5, -5, 0]
@@ -103,7 +103,7 @@ const Hero = () => {
         </motion.div>
 
         <motion.div
-          className="hidden md:block absolute bottom-4 -left-20 w-28 h-28 rounded-lg overflow-hidden shadow-lg"
+          className="hidden md:block absolute -top-20 -left-32 w-48 h-48 rounded-lg overflow-hidden shadow-lg"
           animate={{ 
             y: [0, 15, 0],
             rotate: [0, -3, 3, 0]
@@ -123,7 +123,7 @@ const Hero = () => {
         </motion.div>
 
         <motion.div
-          className="hidden md:block absolute -top-12 -left-28 w-32 h-32 rounded-lg overflow-hidden shadow-lg"
+          className="hidden md:block absolute bottom-6 -left-28 w-36 h-36 rounded-lg overflow-hidden shadow-lg"
           animate={{ 
             y: [0, -25, 0],
             rotate: [0, 8, -8, 0]
@@ -143,7 +143,7 @@ const Hero = () => {
         </motion.div>
 
         <motion.div
-          className="hidden md:block absolute bottom-4 -right-28 w-32 h-32 rounded-lg overflow-hidden shadow-lg"
+          className="hidden md:block absolute bottom-6 -right-24 w-42 h-42 rounded-lg overflow-hidden shadow-lg"
           animate={{ 
             y: [0, 18, 0],
             rotate: [0, -6, 6, 0]
@@ -162,6 +162,7 @@ const Hero = () => {
           />
         </motion.div>
 
+        <div className="mt-16">
         <motion.h1
           variants={itemVariants}
           className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 leading-none text-center max-w-5xl mx-auto"
@@ -189,24 +190,16 @@ const Hero = () => {
         >
           <motion.a
             href="https://calendly.com/vishalkale/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
             className=" bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all duration-300"
           >
             Book a call
           </motion.a>
-
-        
-          
-          {/* <motion.a
-            href="#portfolio"
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            className="border border-white/30 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300"
-          >
-            View our work
-          </motion.a> */}
         </motion.div>
+        </div>
 
         {/* Scroll indicator */}
         {/* <motion.div

@@ -78,8 +78,8 @@ const About = () => {
   // Original target values for counters
   const stats = [
     { id: 'videos', number: '8768', label: 'Videos Created', target: 8768 },
-    { id: 'views', number: '30M+', label: 'Views', target: 30000000 },
-    { id: 'viewcount', number: '1231232', label: 'Total Viewcount (hrs)', target: 1231232 },
+    { id: 'views', number: '50M+', label: 'Views', target: 50000000 },
+    { id: 'viewcount', number: '523164', label: 'Total Viewcount (hrs)', target: 523164 },
   ];
 
   // Animation for counters when section comes into view
@@ -172,9 +172,9 @@ const About = () => {
                     transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
                     className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-400 mb-3"
                   >
-                    {stat.id === 'videos' ? `${counters.videos.toLocaleString()}` : 
+                    {stat.id === 'videos' ? `${counters.videos}` : 
                      stat.id === 'views' ? `${(counters.views / 1000000).toFixed(0)}M+` : 
-                     stat.id === 'viewcount' ? `${counters.viewcount.toLocaleString()}` : stat.number}
+                     stat.id === 'viewcount' ? `${counters.viewcount}` : stat.number}
                   </motion.div>
                   <p className="text-white text-base sm:text-lg md:text-xl font-medium">
                     {stat.label}

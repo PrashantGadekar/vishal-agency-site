@@ -142,6 +142,8 @@ const Services = () => {
           </p>
           <motion.a
             href="https://calendly.com/vishalkale/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
             className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all duration-300"

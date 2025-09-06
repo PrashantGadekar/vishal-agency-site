@@ -255,6 +255,8 @@ const Contact = () => {
                   <motion.a
                     key={social.name}
                     href={social.url}
+                    target={social.url !== '#' ? '_blank' : '_self'}
+                    rel={social.url !== '#' ? 'noopener noreferrer' : ''}
                     initial={{ opacity: 0, scale: 0 }}
                     animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 + 0.5 }}
