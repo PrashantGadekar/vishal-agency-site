@@ -60,9 +60,9 @@ const BookCall = () => {
         >
           {/* Logo */}
           <div className="mb-8">
-            <div className="relative w-24 h-24 mx-auto mb-6">
+            <div className="relative w-36 h-36 mx-auto mb-6">
               <Image 
-                src="/images/Icon7_1.png" 
+                src="/TheViSocial.png" 
                 alt="Company Logo" 
                 fill 
                 className="object-contain"
@@ -73,7 +73,7 @@ const BookCall = () => {
           {/* Contact Links */}
           <div className="flex justify-center gap-8">
             <motion.a
-              href="mailto:contact@yourcompany.com"
+              href="mailto:vishalkalee57@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
@@ -83,7 +83,7 @@ const BookCall = () => {
               Contact
             </motion.a>
             <motion.a
-              href="https://instagram.com/yourcompany"
+              href="https://www.instagram.com/thevisocial/"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
