@@ -4,19 +4,19 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 const Hero = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  // const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) * 100,
-        y: (e.clientY / window.innerHeight) * 100,
-      });
-    };
+  // useEffect(() => {
+  //   const handleMouseMove = (e) => {
+  //     setMousePosition({
+  //       x: (e.clientX / window.innerWidth) * 100,
+  //       y: (e.clientY / window.innerHeight) * 100,
+  //     });
+  //   };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  //   window.addEventListener('mousemove', handleMouseMove);
+  //   return () => window.removeEventListener('mousemove', handleMouseMove);
+  // }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -41,39 +41,66 @@ const Hero = () => {
     },
   };
 
+  // Optimized animation variants for floating images
+  const floatingImageVariants = {
+    animate: {
+      y: [0, -20, 0],
+      rotate: [0, 5, -5, 0],
+      transition: {
+        duration: 4,
+        repeat: Infinity,
+        ease: "easeInOut",
+        repeatType: "reverse"
+      }
+    }
+  };
+
+  const floatingImageVariants2 = {
+    animate: {
+      y: [0, 15, 0],
+      rotate: [0, -3, 3, 0],
+      transition: {
+        duration: 5,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay: 1,
+        repeatType: "reverse"
+      }
+    }
+  };
+
+  const floatingImageVariants3 = {
+    animate: {
+      y: [0, -25, 0],
+      rotate: [0, 8, -8, 0],
+      transition: {
+        duration: 6,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay: 2,
+        repeatType: "reverse"
+      }
+    }
+  };
+
+  const floatingImageVariants4 = {
+    animate: {
+      y: [0, 18, 0],
+      rotate: [0, -6, 6, 0],
+      transition: {
+        duration: 4.5,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay: 3,
+        repeatType: "reverse"
+      }
+    }
+  };
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 hero-bg">
-        <motion.div
-          className="absolute inset-0 opacity-30"
-          style={{
-            background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(102, 126, 234, 0.3) 0%, transparent 50%)`,
-          }}
-        />
-        
-        {/* Floating particles */}
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-white rounded-full opacity-20"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -100, 0],
-              opacity: [0.2, 0.8, 0.2],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
-      </div>
-
+      
+    
       {/* Content */}
       <motion.div
         variants={containerVariants}
@@ -81,84 +108,60 @@ const Hero = () => {
         animate="visible"
         className="relative z-10 text-center px-6 max-w-6xl mx-auto"
       >
-        {/* Floating Hero Images - positioned relative to content */}
+        {/* Floating Hero Images - optimized with performance improvements */}
         <motion.div
           className="absolute -top-16 -right-32 md:-top-16 md:-right-32 -top-32 right-2 w-48 h-48 rounded-lg overflow-hidden shadow-lg"
-          animate={{ 
-            y: [0, -20, 0],
-            rotate: [0, 5, -5, 0]
-          }}
-          transition={{ 
-            duration: 4, 
-            repeat: Infinity, 
-            ease: "easeInOut",
-            delay: 0
-          }}
+          variants={floatingImageVariants}
+          animate="animate"
+          style={{ willChange: 'transform' }}
         >
           <img 
             src="/images/Hero/social-media.png" 
             alt="Social Media metrics" 
             className="w-full h-full object-cover"
+            loading="lazy"
           />
         </motion.div>
 
         <motion.div
           className="hidden md:block absolute -top-20 -left-32 w-48 h-48 rounded-lg overflow-hidden shadow-lg"
-          animate={{ 
-            y: [0, 15, 0],
-            rotate: [0, -3, 3, 0]
-          }}
-          transition={{ 
-            duration: 5, 
-            repeat: Infinity, 
-            ease: "easeInOut",
-            delay: 1
-          }}
+          variants={floatingImageVariants2}
+          animate="animate"
+          style={{ willChange: 'transform' }}
         >
           <img 
             src="/images/Hero/likes.png" 
             alt="Likes metrics" 
             className="w-full h-full object-contain"
+            loading="lazy"
           />
         </motion.div>
 
         <motion.div
           className="hidden md:block absolute bottom-6 -left-28 w-36 h-36 rounded-lg overflow-hidden shadow-lg"
-          animate={{ 
-            y: [0, -25, 0],
-            rotate: [0, 8, -8, 0]
-          }}
-          transition={{ 
-            duration: 6, 
-            repeat: Infinity, 
-            ease: "easeInOut",
-            delay: 2
-          }}
+          variants={floatingImageVariants3}
+          animate="animate"
+          style={{ willChange: 'transform' }}
         >
           <img 
             src="/images/Hero/counts.png" 
             alt="Count metrics" 
             className="w-full h-full object-cover"
+            loading="lazy"
           />
         </motion.div>
 
         <motion.div
           className="hidden md:block absolute bottom-6 -right-24 w-42 h-42 rounded-lg overflow-hidden shadow-lg"
-          animate={{ 
-            y: [0, 18, 0],
-            rotate: [0, -6, 6, 0]
-          }}
-          transition={{ 
-            duration: 4.5, 
-            repeat: Infinity, 
-            ease: "easeInOut",
-            delay: 3
-          }}
+          variants={floatingImageVariants4}
+          animate="animate"
+          style={{ willChange: 'transform' }}
         >
           <img 
             src="/images/Hero/views.png" 
             alt="Views metrics" 
             className="w-full h-full object-cover"
+            loading="lazy"
           />
         </motion.div>
 
@@ -228,12 +231,14 @@ const Hero = () => {
         className="absolute top-20 left-10 w-20 h-20 border border-purple-500 border-opacity-30 rounded-full"
         animate={{ rotate: 360 }}
         transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+        style={{ willChange: 'transform' }}
       />
       
       <motion.div
         className="absolute bottom-20 right-10 w-16 h-16 border border-blue-500 border-opacity-30 rounded-full"
         animate={{ rotate: -360 }}
         transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
+        style={{ willChange: 'transform' }}
       />
     </section>
   );
