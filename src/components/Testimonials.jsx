@@ -13,6 +13,19 @@ const Testimonials = () => {
   const [autoplayEnabled, setAutoplayEnabled] = useState(true);
   const [userInteracted, setUserInteracted] = useState(false);
   
+  // Cleanup all videos on component unmount
+  useEffect(() => {
+    return () => {
+      videoRefs.current.forEach(video => {
+        if (video) {
+          video.pause();
+          video.src = '';
+          video.load();
+        }
+      });
+    };
+  }, []);
+  
   // Testimonial data with video and quote information
   const testimonials = [
     {
@@ -51,11 +64,14 @@ const Testimonials = () => {
 
   // Load video durations on component mount
   useEffect(() => {
+    const tempVideos = []; // Track temp videos for cleanup
+    
     // Create temporary video elements to get durations
     testimonials.forEach((testimonial, index) => {
       const video = document.createElement('video');
       video.src = testimonial.videoUrl;
       video.muted = true; // Add muted to prevent autoplay issues
+      tempVideos.push(video); // Track for cleanup
       
       // Handle errors in case video can't be loaded
       video.onerror = (e) => {
@@ -76,6 +92,15 @@ const Testimonials = () => {
         });
       };
     });
+
+    // Cleanup function to prevent memory leaks
+    return () => {
+      tempVideos.forEach(video => {
+        video.src = '';
+        video.load();
+        video.remove();
+      });
+    };
   }, [testimonials]);
 
   // Auto-scroll functionality that waits for videos to complete
@@ -196,6 +221,8 @@ const Testimonials = () => {
 
   // Ensure videos play when they become active and handle sound based on userInteracted state
   useEffect(() => {
+    let fallbackTimeout; // Track timeout for cleanup
+    
     // Pause all videos first
     videoRefs.current.forEach((videoEl, index) => {
       if (videoEl && index !== currentIndex) {
@@ -242,7 +269,7 @@ const Testimonials = () => {
               console.error("Still can't play video:", e);
               // Since we can't play the video, let's manually advance after a delay
               if (autoplayEnabled) {
-                setTimeout(() => {
+                fallbackTimeout = setTimeout(() => {
                   setCurrentIndex(prevIndex => 
                     prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
                   );
@@ -255,6 +282,13 @@ const Testimonials = () => {
     } else {
       console.log(`No video reference for index ${currentIndex}`);
     }
+
+    // Cleanup timeout on unmount or dependency change
+    return () => {
+      if (fallbackTimeout) {
+        clearTimeout(fallbackTimeout);
+      }
+    };
   }, [currentIndex, userInteracted, isInView, testimonials.length, autoplayEnabled]);
 
   return (

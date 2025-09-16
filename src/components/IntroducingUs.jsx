@@ -1,61 +1,87 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useInView, useAnimation } from 'framer-motion';
 
 const IntroducingUs = () => {
   const controls = useAnimation();
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: false, amount: 0.2 });
-  const [activeVideo, setActiveVideo] = useState(null);
-  const [playingVideos, setPlayingVideos] = useState({});
-  const videoRefs = useRef([]);
+  const isInView = useInView(sectionRef, { once: false, threshold: 0.1 });
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [isVideoPlaying, setIsVideoPlaying] = useState({});
 
-  // Sample video data - with local video files
   const videos = [
     {
       id: 1,
       title: 'Creative Process',
       url: '/videos/website-edit-1.mp4',
-      // url: '/videos/creative-process.mp4', // Local video path in public folder
       direction: 'left',
     },
     {
       id: 2,
       title: 'Client Success Stories',
-      url: '/videos/website-edit-2.mp4', // Local video path
+      url: '/videos/website-edit-2.mp4',
       direction: 'right',
     },
     {
       id: 3,
       title: 'Behind the Scenes',
-      url: '/videos/website-edit-3.mp4', // Local video path
+      url: '/videos/website-edit-3.mp4',
       direction: 'left',
     },
     {
       id: 4,
-      title: 'Team Showcase',
-      url: '/videos/website-edit-4.mp4', // Local video path
+      title: 'Our Impact',
+      url: '/videos/website-edit-4.mp4',
       direction: 'right',
     },
   ];
+  
+  const [activeVideo, setActiveVideo] = useState(null);
+  const [playingVideos, setPlayingVideos] = useState({});
+  const videoRefs = useRef([]);
+
+  // Add cleanup to prevent memory leaks
+  useEffect(() => {
+    return () => {
+      // Cleanup all videos on unmount
+      videoRefs.current.forEach((video) => {
+        if (video) {
+          video.pause();
+          video.src = '';
+          video.load();
+        }
+      });
+    };
+  }, []);
 
   useEffect(() => {
     if (isInView) {
       controls.start('visible');
       
-      // Auto-play all videos when section comes into view
+      // Only play one video at a time to reduce memory usage
+      videoRefs.current.forEach((video, index) => {
+        if (video ) { // Only autoplay first video
+          setTimeout(() => {
+            setPlayingVideos(prev => ({
+              ...prev,
+              [index]: true
+            }));
+            
+            video.muted = true;
+            video.play().catch(e => console.log("Autoplay failed on scroll:", e));
+          }, 500); // Delay to reduce load
+        }
+      });
+    } else {
+      // Stop all videos when section goes out of view
       videoRefs.current.forEach((video, index) => {
         if (video) {
-          // Set all videos to playing state
+          video.pause();
           setPlayingVideos(prev => ({
             ...prev,
-            [index]: true
+            [index]: false
           }));
-          
-          // Ensure videos play with muted state to comply with autoplay policies
-          video.muted = true;
-          video.play().catch(e => console.log("Autoplay failed on scroll:", e));
         }
       });
     }
@@ -170,13 +196,12 @@ const IntroducingUs = () => {
                       <video 
                         src={video.url}
                         className="w-full h-full object-cover animated-border"
-                        preload="metadata"
+                        preload="none"
                         muted
                         playsInline
+                        poster=""
                         ref={el => {
-                          // Set the currentTime to 0 to show the first frame
                           if (el) {
-                            el.currentTime = 0;
                             videoRefs.current[index] = el;
                           }
                         }}
