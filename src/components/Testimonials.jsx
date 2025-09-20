@@ -3,30 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
 
-const Testimonials = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const containerRef = useRef(null);
-  const videoRefs = useRef([]);
-  const isInView = useInView(containerRef, { once: false, amount: 0.2 });
-  const controls = useAnimation();
-  const [videoDurations, setVideoDurations] = useState([]);
-  const [autoplayEnabled, setAutoplayEnabled] = useState(true);
-  const [userInteracted, setUserInteracted] = useState(false);
-  
-  // Cleanup all videos on component unmount
-  useEffect(() => {
-    return () => {
-      videoRefs.current.forEach(video => {
-        if (video) {
-          video.pause();
-          video.src = '';
-          video.load();
-        }
-      });
-    };
-  }, []);
-  
-  // Testimonial data with video and quote information
+ // Testimonial data with video and quote information
   const testimonials = [
     {
       id: 1,
@@ -62,10 +39,36 @@ const Testimonials = () => {
     }
   ];
 
+const Testimonials = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const containerRef = useRef(null);
+  const videoRefs = useRef([]);
+  const isInView = useInView(containerRef, { once: false, amount: 0.2 });
+  const controls = useAnimation();
+  const [videoDurations, setVideoDurations] = useState([]);
+  const [autoplayEnabled, setAutoplayEnabled] = useState(true);
+  const [userInteracted, setUserInteracted] = useState(false);
+  
+  // Cleanup all videos on component unmount
+  useEffect(() => {
+    return () => {
+      videoRefs.current.forEach(video => {
+        if (video) {
+          video.pause();
+          video.src = '';
+          video.load();
+        }
+      });
+    };
+  }, []);
+  
+ 
+
   // Load video durations on component mount
   useEffect(() => {
     const tempVideos = []; // Track temp videos for cleanup
     
+    console.log('Loading video durations for testimonials');
     // Create temporary video elements to get durations
     testimonials.forEach((testimonial, index) => {
       const video = document.createElement('video');
@@ -75,7 +78,7 @@ const Testimonials = () => {
       
       // Handle errors in case video can't be loaded
       video.onerror = (e) => {
-        console.error(`Error loading video ${testimonial.videoUrl}:`, e);
+        // console.error(`Error loading video ${testimonial.videoUrl}:`, e);
         // Set a default duration if video can't be loaded
         setVideoDurations(prev => {
           const newDurations = [...prev];
@@ -105,29 +108,29 @@ const Testimonials = () => {
 
   // Auto-scroll functionality that waits for videos to complete
   // This serves as a fallback in case the onEnded event doesn't fire properly
-  useEffect(() => {
-    let timeout;
+  // useEffect(() => {
+  //   let timeout;
     
-    if (isInView && autoplayEnabled && videoDurations.length > 0) {
-      // Get current video duration, fallback to 8 seconds if not available
-      const currentDuration = videoDurations[currentIndex] || 8000;
+  //   if (isInView && autoplayEnabled && videoDurations.length > 0) {
+  //     // Get current video duration, fallback to 8 seconds if not available
+  //     const currentDuration = videoDurations[currentIndex] || 8000;
       
-      // Add a small buffer to the duration to ensure onEnded has a chance to fire first
-      const durationWithBuffer = currentDuration + 1000; // Add 1 second buffer
+  //     // Add a small buffer to the duration to ensure onEnded has a chance to fire first
+  //     const durationWithBuffer = currentDuration + 1000; // Add 1 second buffer
       
-      // Set timeout to advance to next slide after video finishes (as a fallback)
-      timeout = setTimeout(() => {
-        console.log('Auto-advance timeout triggered (fallback)');
-        setCurrentIndex((prevIndex) => 
-          prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
-        );
-      }, durationWithBuffer);
-    }
+  //     // Set timeout to advance to next slide after video finishes (as a fallback)
+  //     timeout = setTimeout(() => {
+  //       console.log('Auto-advance timeout triggered (fallback)');
+  //       setCurrentIndex((prevIndex) => 
+  //         prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
+  //       );
+  //     }, durationWithBuffer);
+  //   }
 
-    return () => {
-      if (timeout) clearTimeout(timeout);
-    };
-  }, [currentIndex, testimonials.length, videoDurations, isInView, autoplayEnabled]);
+  //   return () => {
+  //     if (timeout) clearTimeout(timeout);
+  //   };
+  // }, [currentIndex, testimonials.length, videoDurations, isInView, autoplayEnabled]);
 
   // Add global user interaction detection
   useEffect(() => {

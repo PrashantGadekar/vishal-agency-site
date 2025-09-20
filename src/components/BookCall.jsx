@@ -42,6 +42,7 @@ const BookCall = () => {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
+            style={{ willChange: 'transform' }} 
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -78,6 +79,7 @@ const BookCall = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              style={{ willChange: 'transform' }} 
               className="text-gray-300 hover:text-white transition-colors duration-300 text-lg font-medium"
             >
               Contact
@@ -88,6 +90,7 @@ const BookCall = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              style={{ willChange: 'transform' }} 
               className="text-gray-300 hover:text-white transition-colors duration-300 text-lg font-medium"
             >
               Instagram

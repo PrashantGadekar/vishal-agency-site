@@ -4,11 +4,7 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
 
-const WhyWorkWithUs = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, threshold: 0.1 });
-
-  // Reasons to work with us - will be replaced with proper images once created by designer
+// Reasons to work with us - will be replaced with proper images once created by designer
   const reasons = [
     {
       image: '/images/why-work-with-us/Growth_1.png', // placeholder - designer will create this
@@ -42,6 +38,12 @@ const WhyWorkWithUs = () => {
     //   description: 'We don\'t just create content; we track performance and provide insights on how your content is helping you achieve your business objectives.'
     // }
   ];
+
+const WhyWorkWithUs = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, threshold: 0.1 });
+
+  
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -94,6 +96,7 @@ const WhyWorkWithUs = () => {
               key={index}
               variants={cardVariants}
               whileHover={{ y: -5, transition: { duration: 0.3 } }}
+              style={{ willChange: 'transform' }}
               className="group bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm rounded-2xl p-3 border border-gray-700/50"
             >
               <div className="flex flex-col items-center text-center">

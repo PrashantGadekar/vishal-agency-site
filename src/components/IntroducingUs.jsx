@@ -45,6 +45,7 @@ const IntroducingUs = () => {
   useEffect(() => {
     return () => {
       // Cleanup all videos on unmount
+      console.log('Cleaning up video resources');
       videoRefs.current.forEach((video) => {
         if (video) {
           video.pause();
@@ -58,6 +59,7 @@ const IntroducingUs = () => {
   useEffect(() => {
     if (isInView) {
       controls.start('visible');
+      console.log('Section in view, starting video playback');
       
       // Only play one video at a time to reduce memory usage
       videoRefs.current.forEach((video, index) => {
@@ -75,6 +77,7 @@ const IntroducingUs = () => {
       });
     } else {
       // Stop all videos when section goes out of view
+      console.log('Section out of view, stopping all videos');
       videoRefs.current.forEach((video, index) => {
         if (video) {
           video.pause();
@@ -90,6 +93,7 @@ const IntroducingUs = () => {
   // Handle video playback
   const handleVideoClick = (index) => {
     // For YouTube videos, use the modal approach
+    console.log('Video clicked:', index, videos[index].url);
     if (videos[index].url.includes('youtube')) {
       setActiveVideo(index);
     } else {
@@ -196,7 +200,7 @@ const IntroducingUs = () => {
                       <video 
                         src={video.url}
                         className="w-full h-full object-cover animated-border"
-                        preload="none"
+                        preload="metadata"
                         muted
                         playsInline
                         poster=""

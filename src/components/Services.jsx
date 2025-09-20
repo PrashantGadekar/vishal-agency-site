@@ -4,11 +4,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import Image from 'next/image';
 
-const Services = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.1 });
-
-  const services = [
+const services = [
     {
       image: '/images/Submit_Icon.png',
       title: 'Submit Your Recordings',
@@ -28,6 +24,12 @@ const Services = () => {
       features: ['Multi-platform distribution', 'Optimized for each platform', 'Engagement optimization', 'Performance tracking'],
     },
   ];
+
+const Services = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, threshold: 0.1 });
+
+  
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -99,7 +101,7 @@ const Services = () => {
                   />
                 </motion.div>
 
-                {/* <br/> */}
+                Showcase Your Success Stories.
                 
                 <h3 className="text-2xl font-bold mb-4 text-white">
                   {service.title}
